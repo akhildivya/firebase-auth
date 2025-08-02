@@ -23,6 +23,8 @@ function Login() {
                 
                 <Button className='form-control'>Sign up</Button>
                 
+
+                
                 <p className='mt-2'>New User ?<Link style={{ textDecoration: 'none' }} to='/signup'> Register</Link></p>
             </div>
         </div>

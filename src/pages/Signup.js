@@ -15,12 +15,26 @@ function Signup() {
         try{
                 await createUserWithEmailAndPassword(auth,email,password)
                 const user=auth.currentUser;
+                if(user)
+                {
+                    await setDoc(doc(db,"Users",user.uid),{
+                        email:user.email,
+                        firstName:fname,
+                        lastname:lname,
+                    });
+                    setFname(" ")
+                    setEmail(" ")
+                    setLname(" ")
+                    setPassword(" ")
+                }
                 console.log(user);
+                alert("user registered successfully")
                 
         }
         catch(err)
         {
-
+            console.log(err);
+            
         }
     }
     return (
@@ -51,7 +65,7 @@ function Signup() {
                         onChange={(e) => setPassword(e.target.value)} /> <br />
 
                     <Button className='form-control' onClick={handleRegister}>Sign up</Button>
-                    <p className='mt-2'>Already registered ?<Link style={{ textDecoration: 'none' }} to='/login'> Login</Link></p>
+                    <p className='mt-2'>Already registered ?<Link style={{ textDecoration: 'none' }} to='/'> Login</Link></p>
                 </div>
             </div>
         </div>
